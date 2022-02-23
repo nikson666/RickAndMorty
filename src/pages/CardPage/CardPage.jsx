@@ -18,7 +18,7 @@ const CardPage = (props) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          maxWidth: "300px",
+          // maxWidth: "300px",
           boxShadow:
             "rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px",
           borderRadius: "20px",
@@ -35,7 +35,7 @@ const CardPage = (props) => {
         <Typography gutterBottom variant="h5" component="div">
           {props.card.name}
         </Typography>
-        <Typography variant="body1">
+        <Typography style={{padding: '5px'}} variant="body1">
           {`status: ${props.card.status}`}
           <br />
           {`species: ${props.card.species}`}

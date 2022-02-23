@@ -2,6 +2,8 @@ export const usersTypes = {
   GET_USERS: "GET_USERS",
   GET_USERS_BY_NAME: "GET_USERS_BY_NAME",
   GET_USERS_BY_PAGE: "GET_USERS_BY_PAGE",
+  SET_SEARCH_NAME: "SET_SEARCH_NAME",
+  SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
 };
 
 export const cardTypes = {

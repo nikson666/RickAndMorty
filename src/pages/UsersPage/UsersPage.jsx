@@ -8,15 +8,19 @@ import { getCard } from "../../redux/reducers/cardReducer";
 import {
   getUsers,
   getUsersByName,
-  getUsersByPage,
+  getUsersByURLPage,
+  getUsersPagePagination,
 } from "../../redux/reducers/usersReducer";
 
 const UsersPage = (props) => {
   useEffect(() => {
-    props.getUsers();
+    if (!props.users) {
+      props.getUsers();
+    }
   }, []);
 
-  console.log('UserPage users: ', props.users);
+  console.log("UserPage users: ", props.users);
+  console.log("UserPage info: ", props.info);
 
   return props.users ? (
     <Box
@@ -25,10 +29,13 @@ const UsersPage = (props) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: '20px'
+        marginBottom: "20px",
       }}
     >
-      <SearchInput getUsersByName={props.getUsersByName} />
+      <SearchInput
+        searchValue={props.searchValue}
+        getUsersByName={props.getUsersByName}
+      />
       <Box
         sx={{
           display: "flex",
@@ -42,7 +49,13 @@ const UsersPage = (props) => {
           );
         })}
       </Box>
-      <PagePagination getUsersByPage={props.getUsersByPage} info={props.info} />
+      <PagePagination
+        getUsersPagePagination={props.getUsersPagePagination}
+        searchValue={props.searchValue}
+        getUsersByURLPage={props.getUsersByURLPage}
+        info={props.info}
+        currentPage={props.currentPage}
+      />
     </Box>
   ) : null;
 };
@@ -51,11 +64,14 @@ const mapStateToProps = (state) => ({
   users: state.usersPage.users,
   card: state.cardPage.card,
   info: state.usersPage.info,
+  searchValue: state.usersPage.searchValue,
+  currentPage: state.usersPage.currentPage,
 });
 
 export default connect(mapStateToProps, {
   getUsers,
   getCard,
   getUsersByName,
-  getUsersByPage,
+  getUsersByURLPage,
+  getUsersPagePagination,
 })(UsersPage);
