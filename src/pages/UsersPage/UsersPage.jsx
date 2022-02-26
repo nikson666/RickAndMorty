@@ -1,5 +1,6 @@
 import { Box } from "@material-ui/core";
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { PagePagination } from "../../components/PagePagination";
 import { SearchInput } from "../../components/SearchInput";
@@ -10,17 +11,23 @@ import {
   getUsersByName,
   getUsersByURLPage,
   getUsersPagePagination,
+  setUsersNameAC,
 } from "../../redux/reducers/usersReducer";
 
 const UsersPage = (props) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!props.users) {
       props.getUsers();
     }
   }, []);
 
-  console.log("UserPage users: ", props.users);
-  console.log("UserPage info: ", props.info);
+  useEffect(() => {
+    if (props.users) {
+      dispatch(setUsersNameAC());
+    }
+  }, [props.users]);
 
   return props.users ? (
     <Box
@@ -35,6 +42,7 @@ const UsersPage = (props) => {
       <SearchInput
         searchValue={props.searchValue}
         getUsersByName={props.getUsersByName}
+        usersName={props.usersName}
       />
       <Box
         sx={{
@@ -44,9 +52,7 @@ const UsersPage = (props) => {
         }}
       >
         {props.users.map((item) => {
-          return (
-            <User key={item.created} user={item} getCard={props.getCard} />
-          );
+          return <User key={item.id} user={item} getCard={props.getCard} />;
         })}
       </Box>
       <PagePagination
@@ -66,6 +72,7 @@ const mapStateToProps = (state) => ({
   info: state.usersPage.info,
   searchValue: state.usersPage.searchValue,
   currentPage: state.usersPage.currentPage,
+  usersName: state.usersPage.usersName,
 });
 
 export default connect(mapStateToProps, {

@@ -1,25 +1,22 @@
-import { Box, Input } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import { TextField } from "@material-ui/core";
+import { Autocomplete } from "@mui/material";
+import React from "react";
 
 export const SearchInput = (props) => {
-  const [value, setValue] = useState("");
-
-  useEffect(() => {
-    setValue(props.searchValue);
-  }, []);
-  const onInputChange = async (e) => {
-    props.getUsersByName(e.target.value);
-    setValue(e.target.value);
+  const onInputChange = (e, value) => {
+    props.getUsersByName(value);
   };
 
   return (
-    <Box>
-      <Input
-        value={value}
-        style={{ width: "300px", margin: "10px" }}
-        placeholder="SeachByName"
-        onChange={onInputChange}
-      />
-    </Box>
+    <Autocomplete
+      isOptionEqualToValue={(option, value) => option.id === value.id}
+      value={props.searchValue}
+      inputValue={props.searchValue}
+      onInputChange={onInputChange}
+      id="controllable-states-demo"
+      options={props.usersName ? [...new Set(props.usersName)] : []}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Name" />}
+    />
   );
 };

@@ -3,6 +3,7 @@ import { usersTypes } from "../types/types";
 
 const initialState = {
   users: null,
+  usersName: [],
   info: null,
   searchValue: "",
   pageParams: null,
@@ -21,6 +22,11 @@ const usersReducer = (state = initialState, action) => {
       return { ...state, searchValue: action.payload, currentPage: 1 };
     case usersTypes.SET_CURRENT_PAGE:
       return { ...state, currentPage: action.payload };
+    case usersTypes.SET_USERS_NAME:
+      return {
+        ...state,
+        usersName: state.users.map((user) => user.name),
+      };
     default:
       return state;
   }
@@ -54,6 +60,10 @@ export const setCurrentPageAC = (page) => ({
   payload: page,
 });
 
+export const setUsersNameAC = () => ({
+  type: usersTypes.SET_USERS_NAME,
+});
+
 //thunk
 export const getUsers = () => {
   return (dispatch) => {
@@ -67,10 +77,10 @@ export const getUsers = () => {
 
 export const getUsersByName = (name) => {
   return (dispatch) => {
-    usersApi
-      .searchByName(name)
-      .then((response) => dispatch(setUsersByNameAC(response.data)))
-      .then(() => dispatch(setSearchNameAC(name)));
+    dispatch(setSearchNameAC(name));
+    usersApi.searchByName(name).then((response) => {
+      return dispatch(setUsersByNameAC(response.data));
+    });
   };
 };
 
