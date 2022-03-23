@@ -27,6 +27,7 @@ export const User = (props) => {
         sx={{ maxWidth: 345 }}
       >
         <CardMedia
+          loading="lazy"
           sx={{ width: 100 }}
           alt="img"
           component="img"
@@ -44,9 +45,9 @@ export const User = (props) => {
                 ? "purple"
                 : "green"
             }`,
-            padding: '5px 10px',
-            borderRadius: '10px',
-            marginBottom: '10px',
+            padding: "5px 10px",
+            borderRadius: "10px",
+            marginBottom: "10px",
           }}
           variant="body1"
         >

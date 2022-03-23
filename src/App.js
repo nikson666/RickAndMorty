@@ -1,14 +1,21 @@
+import React from "react";
+import { Container } from "@material-ui/core";
 import { Route, Routes } from "react-router-dom";
 import CardPage from "./pages/CardPage/CardPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
+import Header from "./components/Header";
 
-function App() {
+export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<UsersPage />} />
-      <Route path="/card" element={<CardPage />} />
-    </Routes>
+    <React.Fragment>
+      <Header />
+      <Container maxWidth="lg">
+        <Routes>
+          {/* <Route path="/" element={<Login />} /> */}
+          <Route path="/" element={<UsersPage />} />
+          <Route path="/card" element={<CardPage />} />
+        </Routes>
+      </Container>
+    </React.Fragment>
   );
 }
-
-export default App;

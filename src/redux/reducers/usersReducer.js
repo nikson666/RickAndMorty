@@ -8,6 +8,8 @@ const initialState = {
   searchValue: "",
   pageParams: null,
   currentPage: 1,
+  isAuth: true,
+  isFetching: false
 };
 
 const usersReducer = (state = initialState, action) => {

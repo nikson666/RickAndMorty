@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { PagePagination } from "../../components/PagePagination";
 import { SearchInput } from "../../components/SearchInput";
 import { User } from "../../components/User";
+import IsAuthHOC from "../../HOC/IsAuthHOC";
 import { getCard } from "../../redux/reducers/cardReducer";
 import {
   getUsers,
@@ -75,10 +76,12 @@ const mapStateToProps = (state) => ({
   usersName: state.usersPage.usersName,
 });
 
-export default connect(mapStateToProps, {
-  getUsers,
-  getCard,
-  getUsersByName,
-  getUsersByURLPage,
-  getUsersPagePagination,
-})(UsersPage);
+export default IsAuthHOC(
+  connect(mapStateToProps, {
+    getUsers,
+    getCard,
+    getUsersByName,
+    getUsersByURLPage,
+    getUsersPagePagination,
+  })(UsersPage)
+);

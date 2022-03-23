@@ -10,7 +10,6 @@ const CardPage = (props) => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        background: "rgba(1,1,1, .2)",
       }}
     >
       <Card
