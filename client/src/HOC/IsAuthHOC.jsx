@@ -8,7 +8,7 @@ const IsAuthHOC = (Component) => {
       props.getIsAuth();
     }, []);
     
-    return props.isAuth ? <Component /> : <h1>you dont`t login</h1>;
+    return props.isAuth ? <Component /> : <h1>you are not authorized!</h1>;
   };
 
   const mapStateToProps = (state) => ({

@@ -2,7 +2,7 @@ import { AppBar } from "@material-ui/core";
 import { Button, Toolbar, Typography, Box } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const authInformation = useSelector((state) => state.authInfo);
@@ -21,7 +21,12 @@ const Header = () => {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Rick and Morty
+            <Link
+              style={{ textDecoration: "none", color: "white", padding: "0" }}
+              to={"/"}
+            >
+              Rick and Morty
+            </Link>
           </Typography>
           <Button
             onClick={() => (!authInformation.isAuth ? onLogin() : onLogout())}

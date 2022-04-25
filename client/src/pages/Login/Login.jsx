@@ -2,7 +2,6 @@ import { Box, Button } from "@mui/material";
 import React from "react";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { useNavigate } from "react-router";
 
 const Login = () => {
@@ -18,10 +17,6 @@ const Login = () => {
 
   const facebook = () => {
     window.open("http://localhost:5000/auth/facebook", "_self");
-  };
-
-  const linkedIn = () => {
-    window.open("http://localhost:5000/auth/linkedin", "_self");
   };
 
   return (
@@ -68,16 +63,6 @@ const Login = () => {
           onClick={() => google()}
         >
           Login with google
-        </Button>
-        <Button
-          startIcon={<LinkedInIcon style={{ width: "30px", height: "30px" }} />}
-          style={{ margin: "5px" }}
-          fullWidth
-          variant="contained"
-          color="primary"
-          onClick={() => linkedIn()}
-        >
-          Login with LinkedIn
         </Button>
       </Box>
     </Box>

@@ -1,4 +1,4 @@
-import { Button, Card, CardMedia, Typography } from "@material-ui/core";
+import { Box, Button, Card, CardMedia, Typography } from "@material-ui/core";
 import React from "react";
 import { connect } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -8,7 +8,7 @@ const CardPage = (props) => {
   const navigate = useNavigate();
 
   return props.card ? (
-    <div
+    <Box
       style={{
         position: "relative",
         display: "flex",
@@ -21,11 +21,11 @@ const CardPage = (props) => {
           position: "absolute",
           top: "0",
           left: "0",
-          background: "#3f51b5"
+          background: "#3f51b5",
         }}
         onClick={() => navigate("/")}
       >
-        <ArrowBackIcon style={{color: "white"}} />
+        <ArrowBackIcon style={{ color: "white" }} />
       </Button>
       <Card
         style={{
@@ -67,7 +67,7 @@ const CardPage = (props) => {
           {`episode: ${props.card.episode.length}`}
         </Typography>
       </Card>
-    </div>
+    </Box>
   ) : null;
 };
 
