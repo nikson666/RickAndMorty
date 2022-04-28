@@ -9,7 +9,7 @@ const initialState = {
   pageParams: null,
   currentPage: 1,
   isAuth: true,
-  isFetching: false
+  isFetching: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -80,9 +80,9 @@ export const getUsers = () => {
 export const getUsersByName = (name) => {
   return (dispatch) => {
     // dispatch(setSearchNameAC(name));
-    usersApi.searchByName(name).then((response) => {
-      return dispatch(setUsersByNameAC(response.data));
-    });
+    usersApi
+      .searchByName(name)
+      .then((response) => dispatch(setUsersByNameAC(response.data)));
   };
 };
 

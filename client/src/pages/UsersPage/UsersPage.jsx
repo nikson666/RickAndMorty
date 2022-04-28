@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { PagePagination } from "../../components/PagePagination";
 import { SearchInput } from "../../components/SearchInput";
-import { User } from "../../components/User";
+import AllUsers from "../../components/AllUsers";
 import IsAuthHOC from "../../HOC/IsAuthHOC";
 import { getCard } from "../../redux/reducers/cardReducer";
 import {
@@ -45,17 +45,7 @@ const UsersPage = (props) => {
         getUsersByName={props.getUsersByName}
         usersName={props.usersName}
       />
-      <Box
-        display="grid"
-        gridTemplateColumns="repeat(auto-fill, minmax(300px, auto))"
-        width="100%"
-        gridGap="10px"
-        justifyItems="center"
-      >
-        {props.users.map((item) => {
-          return <User key={item.id} user={item} getCard={props.getCard} />;
-        })}
-      </Box>
+      <AllUsers getCard={props.getCard} />
       <PagePagination
         getUsersPagePagination={props.getUsersPagePagination}
         searchValue={props.searchValue}
