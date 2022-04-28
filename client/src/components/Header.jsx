@@ -3,13 +3,14 @@ import { Button, Toolbar, Typography, Box } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { pathsOfRoutes } from "../fileWithConstatns";
 
 const Header = () => {
   const authInformation = useSelector((state) => state.authInfo);
   const navigate = useNavigate();
 
   const onLogin = () => {
-    navigate("/login");
+    navigate(pathsOfRoutes.login);
   };
 
   const onLogout = () => {
@@ -23,7 +24,7 @@ const Header = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link
               style={{ textDecoration: "none", color: "white", padding: "0" }}
-              to={"/"}
+              to={pathsOfRoutes.root}
             >
               Rick and Morty
             </Link>

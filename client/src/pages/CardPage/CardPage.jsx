@@ -1,11 +1,16 @@
-import { Box, Button, Card, CardMedia, Typography } from "@material-ui/core";
 import React from "react";
+import { Box, Button, Card, CardMedia, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
+import { pathsOfRoutes } from "../../fileWithConstatns";
 
 const CardPage = (props) => {
   const navigate = useNavigate();
+
+  const backButtonHandler = () => {
+    navigate(pathsOfRoutes.root);
+  };
 
   return props.card ? (
     <Box
@@ -23,7 +28,7 @@ const CardPage = (props) => {
           left: "0",
           background: "#3f51b5",
         }}
-        onClick={() => navigate("/")}
+        onClick={() => backButtonHandler()}
       >
         <ArrowBackIcon style={{ color: "white" }} />
       </Button>

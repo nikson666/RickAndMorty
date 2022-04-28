@@ -3,12 +3,13 @@ import React from "react";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router";
+import { pathsOfRoutes } from "../../fileWithConstatns";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const closeModal = () => {
-    navigate("/");
+    navigate(pathsOfRoutes.root);
   };
 
   const google = () => {

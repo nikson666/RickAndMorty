@@ -5,6 +5,7 @@ import CardPage from "./pages/CardPage/CardPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 import Header from "./components/Header";
 import Login from "./pages/Login/Login";
+import { pathsOfRoutes } from "./fileWithConstatns";
 
 export default function App() {
   return (
@@ -12,9 +13,9 @@ export default function App() {
       <Header />
       <Container maxWidth="lg">
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<UsersPage />} />
-          <Route path="/card" element={<CardPage />} />
+          <Route path={pathsOfRoutes.login} element={<Login />} />
+          <Route path={pathsOfRoutes.root} element={<UsersPage />} />
+          <Route path={pathsOfRoutes.card} element={<CardPage />} />
         </Routes>
       </Container>
     </React.Fragment>

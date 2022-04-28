@@ -1,8 +1,19 @@
 import { Card, CardMedia, Typography } from "@material-ui/core";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { pathsOfRoutes } from "../fileWithConstatns";
 
 export const User = (props) => {
+  const statusColors = {
+    dead: "red",
+    unknown: "purple",
+    alive: "green",
+  };
+
+  const handleLinkToCard = () => {
+    props.getCard(props.user.id);
+  };
+
   return (
     <NavLink
       style={{
@@ -14,8 +25,8 @@ export const User = (props) => {
         textDecoration: "none",
         maxWidth: "300px",
       }}
-      onClick={() => props.getCard(props.user.id)}
-      to={"/card"}
+      onClick={() => handleLinkToCard()}
+      to={pathsOfRoutes.card}
     >
       <Card
         style={{
@@ -41,10 +52,10 @@ export const User = (props) => {
           style={{
             background: `${
               props.user.status === "Dead"
-                ? "red"
+                ? statusColors.dead
                 : props.user.status === "unknown"
-                ? "purple"
-                : "green"
+                ? statusColors.unknown
+                : statusColors.alive
             }`,
             padding: "5px 10px",
             borderRadius: "10px",

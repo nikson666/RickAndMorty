@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const AllUsers = (props) => {
   const users = useSelector((state) => state.usersPage.users);
-  console.log("all")
+
   return (
     <Box
       display="grid"
