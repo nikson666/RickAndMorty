@@ -1,11 +1,21 @@
 import { TextField } from "@material-ui/core";
 import { Autocomplete } from "@mui/material";
-import React from "react";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchNameAC } from "../redux/reducers/usersReducer";
+const _ = require("lodash");
 
 export const SearchInput = (props) => {
-  const onInputChange = (e, value) => {
+  const dispatch = useDispatch();
+  const throttleSearchInput = _.throttle((value) => {
     props.getUsersByName(value);
-  };
+  }, 1000);
+
+  const onInputChange = useCallback((e, value) => {
+    dispatch(setSearchNameAC(value));
+    throttleSearchInput(value);
+    console.log(props.searchValue);
+  }, []);
 
   return (
     <Autocomplete

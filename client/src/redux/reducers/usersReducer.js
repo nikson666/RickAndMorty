@@ -52,7 +52,7 @@ const setUsersByPageAC = (data) => ({
   info: data.info,
 });
 
-const setSearchNameAC = (name) => ({
+export const setSearchNameAC = (name) => ({
   type: usersTypes.SET_SEARCH_NAME,
   payload: name,
 });
@@ -79,7 +79,7 @@ export const getUsers = () => {
 
 export const getUsersByName = (name) => {
   return (dispatch) => {
-    dispatch(setSearchNameAC(name));
+    // dispatch(setSearchNameAC(name));
     usersApi.searchByName(name).then((response) => {
       return dispatch(setUsersByNameAC(response.data));
     });
