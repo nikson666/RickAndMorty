@@ -17,6 +17,15 @@ import Loader from "../../components/Loader";
 
 const UsersPage = (props) => {
   const dispatch = useDispatch();
+  const style = {
+    wrapper: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      marginBottom: "20px",
+    },
+  };
 
   useEffect(() => {
     if (!props.users) {
@@ -33,13 +42,7 @@ const UsersPage = (props) => {
   if (props.users) {
     return !props.isFetching ? (
       <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: "20px",
-        }}
+        style={style.wrapper}
       >
         <SearchInput
           searchValue={props.searchValue}

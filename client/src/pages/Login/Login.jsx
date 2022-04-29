@@ -8,6 +8,35 @@ import { pathsOfRoutes } from "../../fileWithConstatns";
 const Login = () => {
   const navigate = useNavigate();
 
+  const style = {
+    wrapper: {
+      zIndex: "1100",
+      position: "absolute",
+      top: "0",
+      left: "0",
+      right: "0",
+      bottom: "0",
+      width: "100vw",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "rgba(0,0,0,0.3)",
+    },
+    modal: {
+      backgroundColor: "floralwhite",
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      flexDirection: "column",
+      padding: "3rem",
+      borderRadius: "3px",
+      boxShadow: "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)",
+    },
+    btn: {
+      margin: "5px",
+    },
+  };
+
   const closeModal = () => {
     navigate(pathsOfRoutes.root);
   };
@@ -21,34 +50,11 @@ const Login = () => {
   };
 
   return (
-    <Box
-      zIndex="1100"
-      position="absolute"
-      top={0}
-      left={0}
-      right={0}
-      bottom={0}
-      width="100vw"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      backgroundColor="rgba(0,0,0,0.3)"
-      onClick={closeModal}
-    >
-      <Box
-        onClick={(e) => e.stopPropagation()}
-        backgroundColor={"floralwhite"}
-        display={"flex"}
-        justifyContent={"flex-start"}
-        alignItems={"center"}
-        flexDirection={"column"}
-        padding="3rem"
-        borderRadius={3}
-        boxShadow="0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
-      >
+    <Box style={style.wrapper} onClick={closeModal}>
+      <Box style={style.modal} onClick={(e) => e.stopPropagation()}>
         <Button
           startIcon={<FacebookIcon style={{ width: "30px", height: "30px" }} />}
-          style={{ margin: "5px" }}
+          style={style.btn}
           fullWidth
           variant="contained"
           onClick={() => facebook()}
@@ -57,7 +63,7 @@ const Login = () => {
         </Button>
         <Button
           startIcon={<GoogleIcon style={{ width: "30px", height: "30px" }} />}
-          style={{ margin: "5px" }}
+          style={style.btn}
           fullWidth
           variant="contained"
           color="error"

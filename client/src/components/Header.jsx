@@ -9,6 +9,17 @@ const Header = () => {
   const authInformation = useSelector((state) => state.authInfo);
   const navigate = useNavigate();
 
+  const style = {
+    wrapper: {
+      marginBottom: "10px",
+    },
+    logo: {
+      textDecoration: "none",
+      color: "white",
+      padding: "0",
+    },
+  };
+
   const onLogin = () => {
     navigate(pathsOfRoutes.login);
   };
@@ -18,12 +29,12 @@ const Header = () => {
   };
 
   return (
-    <Box marginBottom={10}>
+    <Box style={style.wrapper}>
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link
-              style={{ textDecoration: "none", color: "white", padding: "0" }}
+              style={style.logo}
               to={pathsOfRoutes.root}
             >
               Rick and Morty
