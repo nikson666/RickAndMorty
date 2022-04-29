@@ -4,7 +4,7 @@ export const usersTypes = {
   GET_USERS_BY_PAGE: "GET_USERS_BY_PAGE",
   SET_SEARCH_NAME: "SET_SEARCH_NAME",
   SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
-  SET_USERS_NAME: "  SET_USERS_NAME",
+  SET_USERS_NAME: "SET_USERS_NAME",
 };
 
 export const cardTypes = {
@@ -13,4 +13,8 @@ export const cardTypes = {
 
 export const authType = {
   SET_IS_AUTH: "SET_IS_AUTH",
+};
+
+export const loaderTypes = {
+  SET_IS_FETCHING: "SET_IS_FETCHING",
 };

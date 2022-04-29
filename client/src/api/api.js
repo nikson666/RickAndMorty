@@ -21,9 +21,6 @@ export const usersApi = {
   searchByName: (name) => {
     return instance.get(`/character/?name=${name}`);
   },
-  getUsersByURLPage: (url) => {
-    return axios.get(url);
-  },
   getUsersPagePaginationRequest: (pageParams) => {
     return instance.get(`/character/?${pageParams}`);
   },

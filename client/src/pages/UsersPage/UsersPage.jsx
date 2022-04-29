@@ -10,10 +10,10 @@ import { getCard } from "../../redux/reducers/cardReducer";
 import {
   getUsers,
   getUsersByName,
-  getUsersByURLPage,
   getUsersPagePagination,
   setUsersNameAC,
 } from "../../redux/reducers/usersReducer";
+import Loader from "../../components/Loader";
 
 const UsersPage = (props) => {
   const dispatch = useDispatch();
@@ -30,31 +30,34 @@ const UsersPage = (props) => {
     }
   }, [props.users]);
 
-  return props.users ? (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: "20px",
-      }}
-    >
-      <SearchInput
-        searchValue={props.searchValue}
-        getUsersByName={props.getUsersByName}
-        usersName={props.usersName}
-      />
-      <AllUsers getCard={props.getCard} />
-      <PagePagination
-        getUsersPagePagination={props.getUsersPagePagination}
-        searchValue={props.searchValue}
-        getUsersByURLPage={props.getUsersByURLPage}
-        info={props.info}
-        currentPage={props.currentPage}
-      />
-    </Box>
-  ) : null;
+  if (props.users) {
+    return !props.isFetching ? (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: "20px",
+        }}
+      >
+        <SearchInput
+          searchValue={props.searchValue}
+          getUsersByName={props.getUsersByName}
+          usersName={props.usersName}
+        />
+        <AllUsers getCard={props.getCard} />
+        <PagePagination
+          getUsersPagePagination={props.getUsersPagePagination}
+          searchValue={props.searchValue}
+          info={props.info}
+          currentPage={props.currentPage}
+        />
+      </Box>
+    ) : (
+      <Loader />
+    );
+  } else return null;
 };
 
 const mapStateToProps = (state) => ({
@@ -64,6 +67,7 @@ const mapStateToProps = (state) => ({
   searchValue: state.usersPage.searchValue,
   currentPage: state.usersPage.currentPage,
   usersName: state.usersPage.usersName,
+  isFetching: state.usersPage.isFetching,
 });
 
 export default IsAuthHOC(
@@ -71,7 +75,6 @@ export default IsAuthHOC(
     getUsers,
     getCard,
     getUsersByName,
-    getUsersByURLPage,
     getUsersPagePagination,
   })(UsersPage)
 );

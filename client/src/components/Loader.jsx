@@ -3,7 +3,16 @@ import React from "react";
 
 const Loader = () => {
   return (
-    <Box sx={{ display: "flex", padding: "20vh 0" }}>
+    <Box
+      position="absolute"
+      top="0"
+      left="0"
+      height="100vh"
+      width="100%"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
       <CircularProgress style={{ margin: "0 auto" }} />
     </Box>
   );

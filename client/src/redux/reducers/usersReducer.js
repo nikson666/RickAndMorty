@@ -1,5 +1,5 @@
 import { usersApi } from "../../api/api";
-import { usersTypes } from "../types/types";
+import { loaderTypes, usersTypes } from "../types/types";
 
 const initialState = {
   users: null,
@@ -29,10 +29,17 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         usersName: state.users.map((user) => user.name),
       };
+    case loaderTypes.SET_IS_FETCHING:
+      return { ...state, isFetching: action.payload };
     default:
       return state;
   }
 };
+
+const setIsFetching = (status) => ({
+  type: loaderTypes.SET_IS_FETCHING,
+  payload: status,
+});
 
 const setUsersAC = (data) => ({
   type: usersTypes.GET_USERS,
@@ -69,29 +76,21 @@ export const setUsersNameAC = () => ({
 //thunk
 export const getUsers = () => {
   return (dispatch) => {
+    dispatch(setIsFetching(true));
     usersApi
       .getCharacters()
       .then((response) =>
         response.status === 200 ? dispatch(setUsersAC(response.data)) : null
-      );
+      )
+      .then(() => dispatch(setIsFetching(false)));
   };
 };
 
 export const getUsersByName = (name) => {
   return (dispatch) => {
-    // dispatch(setSearchNameAC(name));
     usersApi
       .searchByName(name)
       .then((response) => dispatch(setUsersByNameAC(response.data)));
-  };
-};
-
-export const getUsersByURLPage = (url, pageNum) => {
-  return (dispatch) => {
-    usersApi
-      .getUsersByURLPage(url)
-      .then((response) => dispatch(setUsersByPageAC(response.data)))
-      .then(() => dispatch(setCurrentPageAC(pageNum)));
   };
 };
 
